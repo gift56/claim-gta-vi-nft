@@ -32,6 +32,7 @@ export function TopNav({ activeCharacterId }: TopNavProps) {
           width={48}
           height={48}
           className="rounded-lg"
+          data-site-logo
           priority
         />
       </a>

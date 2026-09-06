@@ -10,6 +10,7 @@ import {
   ThumbnailSelector,
 } from "@/components/hero";
 import { Footer } from "@/components/layout/footer";
+import { Preloader } from "@/components/layout/preloader";
 import { TopNav } from "@/components/layout/top-nav";
 import {
   CHARACTERS,
@@ -18,6 +19,7 @@ import {
 } from "@/data/characters";
 
 export default function Home() {
+  const [ready, setReady] = useState(false);
   const [activeCharacterId, setActiveCharacterId] = useState(CHARACTERS[0].id);
   const [view, setView] = useState<CharacterView>("front");
 
@@ -25,6 +27,8 @@ export default function Home() {
 
   return (
     <div className="relative flex min-h-dvh flex-col bg-night lg:h-dvh lg:overflow-hidden">
+      {!ready && <Preloader onComplete={() => setReady(true)} />}
+
       {/* Banner backdrop — blended into the dark theme */}
       <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
         <div
@@ -42,8 +46,8 @@ export default function Home() {
       <main className="relative z-10 grid min-h-0 flex-1 grid-cols-1 gap-6 px-6 py-4 lg:grid-cols-[minmax(260px,340px)_1fr_minmax(180px,220px)] lg:gap-8 lg:py-5">
         {/* Left column: info, stats, mint — stage first on mobile via order */}
         <div className="order-2 flex min-h-0 flex-col gap-4 lg:order-1 lg:overflow-y-auto lg:pr-1">
-          <CharacterInfo character={character} />
-          <StatsList character={character} />
+          <CharacterInfo character={character} ready={ready} />
+          <StatsList character={character} ready={ready} />
           <MintButton
             characterName={character.name}
             accent={character.accent}
@@ -64,6 +68,7 @@ export default function Home() {
           <ThumbnailSelector
             activeCharacterId={activeCharacterId}
             onSelect={(selected) => setActiveCharacterId(selected.id)}
+            ready={ready}
           />
         </div>
       </main>
