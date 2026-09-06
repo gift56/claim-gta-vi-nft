@@ -4,9 +4,10 @@
 
 export const DESIGN_TOKENS = {
   color: {
-    night: "#0D132B",
-    surface: "#131C3E",
-    surface2: "#1B2650",
+    night: "#07070D",
+    surface: "#101018",
+    surface2: "#1A1A28",
+    magenta: "#FF2A85",
     gold: "#FFC800",
     cyan: "#00F0FF",
     ink: "#FFFFFF",

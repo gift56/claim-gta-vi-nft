@@ -20,7 +20,11 @@ const COLOR_GROUPS = [
         hex: DESIGN_TOKENS.color.surface2,
         role: "Hover surface",
       },
-      { name: "gold", hex: DESIGN_TOKENS.color.gold, role: "Accent Gold" },
+      {
+        name: "magenta",
+        hex: DESIGN_TOKENS.color.magenta,
+        role: "Accent Magenta (ViceMint)",
+      },
       { name: "cyan", hex: DESIGN_TOKENS.color.cyan, role: "Active Cyan" },
       { name: "ink", hex: DESIGN_TOKENS.color.ink, role: "Text Primary" },
     ],
@@ -71,7 +75,7 @@ export default function StyleGuidePage() {
         <p className="text-caption uppercase tracking-[0.08em] text-muted">
           Nexus Collective
         </p>
-        <h1 className="font-display text-h1 text-gradient">
+        <h1 className="font-display text-h1 text-magenta">
           Design Style Guide
         </h1>
         <p className="mt-2 text-body-md text-muted">
@@ -138,7 +142,7 @@ export default function StyleGuidePage() {
             </p>
           </div>
           <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-hairline bg-surface p-6">
-            <span className="rounded-md bg-gold px-6 py-2 font-semibold text-night shadow-glow-gold">
+            <span className="rounded-md bg-magenta px-6 py-2 font-semibold text-ink shadow-glow-magenta">
               Glow Gold
             </span>
             <span className="rounded-md border border-cyan px-6 py-2 font-semibold text-cyan shadow-glow-cyan">

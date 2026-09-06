@@ -1,39 +1,70 @@
-export default function Home() {
-  return (
-    <div className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-night px-6">
-      {/* Radial backdrop glows */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 -left-40 h-128 w-lg rounded-full bg-gold/14 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-40 -bottom-40 h-128 w-lg rounded-full bg-cyan/14 blur-3xl"
-      />
+"use client";
 
-      <main className="relative z-10 flex flex-col items-center gap-6 text-center">
-        <p className="text-caption uppercase tracking-[0.08em] text-muted">
-          Nexus Collective Presents
-        </p>
-        <h1 className="max-w-3xl font-display text-h1 text-gradient">
-          GTA VI Character NFT
-        </h1>
-        <p className="max-w-md text-body-lg text-muted">
-          Inspect the characters in interactive 3D and claim yours on Ethereum
-          Sepolia.
-        </p>
-        <button
-          type="button"
-          aria-disabled="true"
-          title="Mint flow arrives in a later phase"
-          className="mt-2 cursor-not-allowed rounded-md bg-gold px-8 py-3 font-semibold text-night shadow-glow-gold"
-        >
-          Claim Your Character
-        </button>
-        <p className="text-body-sm text-faint">
-          Mint flow arrives in a later phase.
-        </p>
+import { useState } from "react";
+
+import {
+  CharacterInfo,
+  CharacterStage,
+  MintButton,
+  StatsList,
+  ThumbnailSelector,
+} from "@/components/hero";
+import { Footer } from "@/components/layout/footer";
+import { TopNav } from "@/components/layout/top-nav";
+import {
+  CHARACTERS,
+  type CharacterView,
+  getCharacterById,
+} from "@/data/characters";
+
+export default function Home() {
+  const [activeCharacterId, setActiveCharacterId] = useState(CHARACTERS[0].id);
+  const [view, setView] = useState<CharacterView>("front");
+
+  const character = getCharacterById(activeCharacterId);
+
+  return (
+    <div className="relative flex min-h-dvh flex-col bg-night lg:h-dvh lg:overflow-hidden">
+      {/* Banner backdrop — blended into the dark theme */}
+      <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+          style={{ backgroundImage: "url(/gta-banner.png)" }}
+        />
+        {/* Dark scrims so text/cards stay readable */}
+        <div className="absolute inset-0 bg-linear-to-b from-night/70 via-night/40 to-night/90" />
+        <div className="absolute inset-0 bg-night/30" />
+      </div>
+
+      <TopNav activeCharacterId={activeCharacterId} />
+
+      {/* Hero grid */}
+      <main className="relative z-10 grid min-h-0 flex-1 grid-cols-1 gap-6 px-6 py-4 lg:grid-cols-[minmax(260px,340px)_1fr_minmax(180px,220px)] lg:gap-8 lg:py-5">
+        {/* Left column: info, stats, mint — stage first on mobile via order */}
+        <div className="order-2 flex min-h-0 flex-col gap-4 lg:order-1 lg:overflow-y-auto lg:pr-1">
+          <CharacterInfo character={character} />
+          <StatsList character={character} />
+          <MintButton
+            characterName={character.name}
+            accent={character.accent}
+          />
+        </div>
+
+        {/* Center column: character display */}
+        <div className="order-1 min-h-[60vh] lg:order-2 lg:min-h-0">
+          <CharacterStage character={character} view={view} />
+        </div>
+
+        {/* Right column: thumbnail selector */}
+        <div className="order-3 flex min-h-0 flex-row items-center justify-center gap-3 lg:flex-col lg:items-stretch lg:justify-start lg:overflow-y-auto">
+          <ThumbnailSelector
+            activeCharacterId={activeCharacterId}
+            onSelect={(selected) => setActiveCharacterId(selected.id)}
+          />
+        </div>
       </main>
+
+      <Footer view={view} onViewChange={setView} />
     </div>
   );
 }

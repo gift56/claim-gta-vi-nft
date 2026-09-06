@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#07070D"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#1A1A28" stroke-width="1.5"/>
+  <!-- V mark -->
+  <path d="M15 16 L27 48 L32 48 L22 16 Z" fill="#FF2A85"/>
+  <path d="M49 16 L37 48 L32 48 L42 16 Z" fill="#00F0FF"/>
+  <!-- neon dot -->
+  <circle cx="32" cy="54" r="3" fill="#FF2A85"/>
+</svg>
