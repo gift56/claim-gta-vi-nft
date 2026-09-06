@@ -52,7 +52,11 @@ export default function Home() {
 
         {/* Center column: character display */}
         <div className="order-1 min-h-[60vh] lg:order-2 lg:min-h-0">
-          <CharacterStage character={character} view={view} />
+          <CharacterStage
+            character={character}
+            view={view}
+            onViewChange={setView}
+          />
         </div>
 
         {/* Right column: thumbnail selector */}

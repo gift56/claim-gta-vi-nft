@@ -8,7 +8,7 @@ const SOCIALS = [
   { label: "OpenSea", href: "https://opensea.io" },
 ];
 
-const VIEWS: CharacterView[] = ["front", "side", "back"];
+const VIEWS: CharacterView[] = ["front", "back"];
 
 interface FooterProps {
   view: CharacterView;
