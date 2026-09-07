@@ -1,9 +1,10 @@
 "use client";
 
-import { parseEther } from "viem";
+import { formatEther } from "viem";
 import {
   useAccount,
   useChainId,
+  useReadContract,
   useSwitchChain,
   useWaitForTransactionReceipt,
   useWriteContract,
@@ -22,13 +23,18 @@ export type MintStatus =
   | "success"
   | "error";
 
-// TODO(prompt 006): read mintPrice() from the contract instead of hardcoding.
-const MINT_PRICE = parseEther("0.05");
-
 export function useMintCharacter() {
   const { isConnected } = useAccount();
   const chainId = useChainId();
   const { switchChainAsync } = useSwitchChain();
+
+  // Read the live on-chain mint price so payments always match the contract's
+  // IncorrectPayment check exactly.
+  const { data: mintPrice } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: CONTRACT_ABI,
+    functionName: "mintPrice",
+  });
 
   const {
     writeContract,
@@ -67,6 +73,7 @@ export function useMintCharacter() {
 
   async function mint(characterId: number) {
     if (status === "confirming" || status === "pending") return;
+    if (!mintPrice) return; // price not loaded yet
 
     if (chainId !== CHAIN_ID) {
       await switchChainAsync({ chainId: CHAIN_ID });
@@ -77,7 +84,11 @@ export function useMintCharacter() {
       abi: CONTRACT_ABI,
       functionName: "mintCharacter",
       args: [BigInt(characterId)],
-      value: MINT_PRICE,
+      value: mintPrice,
+      // Simple mint ~150k-250k gas. Cap it so viem's estimation can never
+      // inflate to the 21M block limit, which Infura rejects
+      // ("transaction gas limit too high (cap: 16777216)").
+      gas: BigInt(500_000),
     });
   }
 
@@ -85,6 +96,7 @@ export function useMintCharacter() {
     status,
     errorMessage,
     needsSwitch: isConnected && chainId !== CHAIN_ID,
+    mintPriceEth: mintPrice ? formatEther(mintPrice) : null,
     mint,
     reset: resetWrite,
   };

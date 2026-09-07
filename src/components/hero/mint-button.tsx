@@ -24,7 +24,8 @@ export function MintButton({
   characterName,
   accent,
 }: MintButtonProps) {
-  const { status, errorMessage, needsSwitch, mint } = useMintCharacter();
+  const { status, errorMessage, needsSwitch, mintPriceEth, mint } =
+    useMintCharacter();
 
   const isBusy = status === "confirming" || status === "pending";
   const label =
@@ -43,7 +44,8 @@ export function MintButton({
         {label}
       </button>
       <output className="block text-caption text-faint">
-        0.05 ETH · Sepolia testnet
+        {mintPriceEth ? `${mintPriceEth} ETH` : "Loading price…"} · Sepolia
+        testnet
         {status === "error" && errorMessage ? (
           <span className="block text-error">{errorMessage}</span>
         ) : null}
