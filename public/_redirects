@@ -1,0 +1,5 @@
+# The NFT contract appends the raw tokenId to each characterURI base,
+# e.g. /metadata/jason/7. Rewrite those to the shared character metadata.
+/metadata/jason/*    /metadata/jason.json    200
+/metadata/lucia/*    /metadata/lucia.json    200
+/metadata/drequan/*  /metadata/drequan.json  200
