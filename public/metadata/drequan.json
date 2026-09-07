@@ -1,0 +1,13 @@
+{
+  "name": "Dre'Quan Priest",
+  "description": "The Hustler. From block parties to the boardroom — every move is business. A promoter who knows exactly what the streets want to hear. Dre'Quan runs Only Raw Records and manages the Real Dimez, turning Vice City's music scene into his personal empire.",
+  "image": "https://getvicemint.netlify.app/images/dre-face.png",
+  "external_url": "https://getvicemint.netlify.app",
+  "attributes": [
+    { "trait_type": "Alias", "value": "The Hustler" },
+    { "trait_type": "Street Rep", "value": 90 },
+    { "trait_type": "Driving", "value": 61 },
+    { "trait_type": "Charisma", "value": 88 },
+    { "trait_type": "Stamina", "value": 72 }
+  ]
+}

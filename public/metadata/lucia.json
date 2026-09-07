@@ -1,0 +1,13 @@
+{
+  "name": "Lucia Caminos",
+  "description": "The Strategist. Fresh out of Leonida Penitentiary — and right back in the game. Lucia's father taught her to fight as soon as she could walk. Freshly released from prison, she and Jason Duval are determined to build a better life across Vice City — even if it means taking it from anyone in the way.",
+  "image": "https://getvicemint.netlify.app/images/lucia-face.png",
+  "external_url": "https://getvicemint.netlify.app",
+  "attributes": [
+    { "trait_type": "Alias", "value": "The Strategist" },
+    { "trait_type": "Street Rep", "value": 82 },
+    { "trait_type": "Driving", "value": 74 },
+    { "trait_type": "Hacking", "value": 91 },
+    { "trait_type": "Stamina", "value": 68 }
+  ]
+}

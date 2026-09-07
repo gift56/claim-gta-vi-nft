@@ -1,0 +1,13 @@
+{
+  "name": "Jason Duval",
+  "description": "The Drifter. Wants an easy life — but things just keep getting harder. Jason grew up around grifters and crooks, running with a rough crowd. A stint in the army aimed him toward a better life, but he came home to Vice City and fell back in with local trouble. Now he wants out of the trade — and Lucia is the reason he keeps finding a way back in.",
+  "image": "https://getvicemint.netlify.app/images/jason-face.png",
+  "external_url": "https://getvicemint.netlify.app",
+  "attributes": [
+    { "trait_type": "Alias", "value": "The Drifter" },
+    { "trait_type": "Street Rep", "value": 76 },
+    { "trait_type": "Marksmanship", "value": 94 },
+    { "trait_type": "Driving", "value": 80 },
+    { "trait_type": "Nerve", "value": 85 }
+  ]
+}
