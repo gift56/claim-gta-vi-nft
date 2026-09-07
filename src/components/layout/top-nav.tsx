@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ACCENT_OUTLINE_BUTTON } from "@/constants/accent-styles";
 import { getCharacterById } from "@/data/characters";
+import { WalletConnect } from "./wallet-connect";
 
 const MENU_LINKS = [
   { label: "Characters", href: "#characters" },
@@ -50,15 +50,8 @@ export function TopNav({ activeCharacterId }: TopNavProps) {
         ))}
       </nav>
 
-      {/* Connect Wallet (right) — placeholder until prompt 005 */}
-      <button
-        type="button"
-        aria-disabled="true"
-        title="Wallet connection arrives in a later phase"
-        className={`shrink-0 cursor-not-allowed rounded-md border px-3 py-1.5 text-caption font-semibold whitespace-nowrap transition-colors duration-300 md:px-4 md:py-2 md:text-body-sm ${ACCENT_OUTLINE_BUTTON[active.accent]}`}
-      >
-        Connect Wallet
-      </button>
+      {/* Connect Wallet */}
+      <WalletConnect />
       <span className="sr-only" aria-live="polite">
         Currently viewing {active.name}
       </span>

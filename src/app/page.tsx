@@ -49,6 +49,7 @@ export default function Home() {
           <CharacterInfo character={character} ready={ready} />
           <StatsList character={character} ready={ready} />
           <MintButton
+            characterId={CHARACTERS.findIndex((c) => c.id === character.id)}
             characterName={character.name}
             accent={character.accent}
           />

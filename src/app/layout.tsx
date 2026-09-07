@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fugaz_One, Geist_Mono, Inter } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
 
 // Display font stand-in for Pricedown (not on Google Fonts).
@@ -40,7 +41,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${fugaz.variable} ${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-night font-sans text-ink">{children}</body>
+      {/* suppressHydrationWarning: extensions (Grammarly etc.) inject attributes
+          into <body> before hydration, which would otherwise warn every load. */}
+      <body
+        suppressHydrationWarning
+        className="min-h-full bg-night font-sans text-ink"
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
