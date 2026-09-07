@@ -22,7 +22,7 @@ export function TopNav({ activeCharacterId }: TopNavProps) {
     <header className="relative z-10 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-hairline px-4 md:px-6">
       {/* Logo (left) */}
       <a
-        href="/"
+        href="#"
         className="flex shrink-0 items-center"
         aria-label="ViceMint home"
       >

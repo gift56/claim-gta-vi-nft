@@ -68,7 +68,21 @@ export default function Home() {
         <div className="order-3 flex min-h-0 flex-row items-center justify-center gap-3 lg:flex-col lg:items-stretch lg:justify-start lg:overflow-y-auto">
           <ThumbnailSelector
             activeCharacterId={activeCharacterId}
-            onSelect={(selected) => setActiveCharacterId(selected.id)}
+            onSelect={(selected) => {
+              setActiveCharacterId(selected.id);
+              // On mobile, the stage sits above the info column, so bring
+              // the newly selected character into view. Desktop is a fixed
+              // viewport layout and must not scroll.
+              if (!window.matchMedia("(min-width: 1024px)").matches) {
+                const reduceMotion = window.matchMedia(
+                  "(prefers-reduced-motion: reduce)",
+                ).matches;
+                window.scrollTo({
+                  top: 0,
+                  behavior: reduceMotion ? "auto" : "smooth",
+                });
+              }
+            }}
             ready={ready}
           />
         </div>
